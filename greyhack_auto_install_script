@@ -1,0 +1,15 @@
+//==============================================================
+autoinstall = include_lib("/lib/aptclient.so")
+if not autoinstall then
+    autoinstall = include_lib(current_path + "/aptclient.so")
+end if
+if not autoinstall then exit("Error: Missing aptclient.so lib!")
+//==============================================================
+autoinstall.add_repo("[ip]",1542) //adds repo address in the [sources.txt] file located in the /lib/ folder
+autoinstall.update //updates repo address to make autoinstall work
+//==============================================================
+autoinstall.install("metaxploit.so","/lib/") //installs metaxploit.so into the /lib/ folder
+autoinstall.install("crypto.so","/lib/") //installs crypto.so into the /lib/ folder
+//==============================================================
+autoinstall.del_repo("[ip]") //cleans up repo address in the [sources.txt] file located in /lib/ folder
+//==============================================================
